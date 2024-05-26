@@ -1,26 +1,68 @@
+// const API_KEY = "5d990e1321f3770bde7e345a59ec56fe";
+
+// $("#submitBtn").on("click", function (e) {
+//   e.preventDefault();
+
+//   const cityName = $("#searchBar").val();
+
+//   fetch(
+//     `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
+//   )
+//     .then(function (res) {
+//       return res.json();
+//     })
+//     .then(function (data) {
+//       console.log(JSON.stringify(data));
+//       currentWeatherInfo(data[0].lat, data[0].lon, cityName);
+//       forecastWeatherInfo(data[0].lat, data[0].lon);
+//       saveToLocalStorage(cityName);
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//     });
+// });
 const API_KEY = "5d990e1321f3770bde7e345a59ec56fe";
 
 $("#submitBtn").on("click", function (e) {
   e.preventDefault();
 
   const cityName = $("#searchBar").val();
+  
+  // Очищення пошукового поля після натискання кнопки
+  $("#searchBar").val('');
 
   fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
   )
     .then(function (res) {
+      if (!res.ok) {
+        throw new Error('Network response was not ok ' + res.statusText);
+      }
       return res.json();
     })
     .then(function (data) {
+      if (data.length === 0) {
+        throw new Error('No data found for the provided city name');
+      }
       console.log(JSON.stringify(data));
       currentWeatherInfo(data[0].lat, data[0].lon, cityName);
       forecastWeatherInfo(data[0].lat, data[0].lon);
       saveToLocalStorage(cityName);
     })
     .catch(function (err) {
-      console.log(err);
+      console.log('Fetch error: ', err);
     });
 });
+
+function saveToLocalStorage(cityName) {
+  const savedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
+  if (!savedCities.includes(cityName)) {
+    savedCities.push(cityName);
+    localStorage.setItem("searchedCities", JSON.stringify(savedCities));
+  }
+}
+
+
 
 function saveToLocalStorage(cityName) {
 
