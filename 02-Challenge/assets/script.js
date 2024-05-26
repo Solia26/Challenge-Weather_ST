@@ -1,26 +1,9 @@
-// const API_KEY = "5d990e1321f3770bde7e345a59ec56fe";
+const currentWeather = document.querySelector("#currentWeather")
+console.log(currentWeather)
+const forecastWeatherInfoRef = document.querySelector("#weather5days")
+const searchContainer = document.getElementById("search-container")
+const citiesNames = JSON.parse(localStorage.getItem("searchedCities")) || [];
 
-// $("#submitBtn").on("click", function (e) {
-//   e.preventDefault();
-
-//   const cityName = $("#searchBar").val();
-
-//   fetch(
-//     `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
-//   )
-//     .then(function (res) {
-//       return res.json();
-//     })
-//     .then(function (data) {
-//       console.log(JSON.stringify(data));
-//       currentWeatherInfo(data[0].lat, data[0].lon, cityName);
-//       forecastWeatherInfo(data[0].lat, data[0].lon);
-//       saveToLocalStorage(cityName);
-//     })
-//     .catch(function (err) {
-//       console.log(err);
-//     });
-// });
 const API_KEY = "5d990e1321f3770bde7e345a59ec56fe";
 
 $("#submitBtn").on("click", function (e) {
@@ -28,7 +11,7 @@ $("#submitBtn").on("click", function (e) {
 
   const cityName = $("#searchBar").val();
   
-  // Очищення пошукового поля після натискання кнопки
+
   $("#searchBar").val('');
 
   fetch(
@@ -48,6 +31,15 @@ $("#submitBtn").on("click", function (e) {
       currentWeatherInfo(data[0].lat, data[0].lon, cityName);
       forecastWeatherInfo(data[0].lat, data[0].lon);
       saveToLocalStorage(cityName);
+      citiesNames.push (cityName)
+      if (!citiesNames.includes(cityName)) {searchContainer.insertAdjacentHTML("beforeend", `<button type="button">${cityName}</button>`)}
+      // const savedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
+      // if (!savedCities.includes(cityName)) {
+      //   savedCities.push(cityName);
+      //   localStorage.setItem("searchedCities", JSON.stringify(savedCities));
+      // }
+      console.dir(searchContainer.childNodes)
+      searchContainer.insertAdjacentHTML("beforeend", `<button type="button">${cityName}</button>`)
     })
     .catch(function (err) {
       console.log('Fetch error: ', err);
@@ -64,15 +56,15 @@ function saveToLocalStorage(cityName) {
 
 
 
-function saveToLocalStorage(cityName) {
+// function saveToLocalStorage(cityName) {
 
-    const savedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
+//     const savedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
 
-    savedCities.push(cityName)
+//     savedCities.push(cityName)
 
-    localStorage.setItem("searchedCities", JSON.stringify(savedCities))
+//     localStorage.setItem("searchedCities", JSON.stringify(savedCities))
 
-}
+// }
 
 function loadFromLocalStorage() {
 
@@ -96,7 +88,7 @@ function currentWeatherInfo(lat, lon, cityName) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
   )
-    .then(function (res) {
+    .then(function (res) { currentWeather.innerHTML=""
       return res.json();
     })
     .then(function (data) {
@@ -110,7 +102,7 @@ function currentWeatherInfo(lat, lon, cityName) {
 
       const wind = $("<p>");
       wind.text(`Wind Speed: ${data.wind.speed}`);
-
+      
       $("#currentWeather").append(h2, temp, wind);
     })
     .catch(function (err) {
@@ -122,7 +114,7 @@ function forecastWeatherInfo(lat, lon) {
     fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
       )
-        .then(function (res) {
+        .then(function (res) { forecastWeatherInfoRef.innerHTML=""
           return res.json();
         })
         .then(function (data) {
@@ -164,7 +156,7 @@ function forecastWeatherInfo(lat, lon) {
     
         weatherBoxDiv.append(dateH3, tempP, humidityP, windP);
     
-        document.getElementById("forecast-container").append(weatherBoxDiv)
+        document.getElementById("weather5days").append(weatherBoxDiv)
     }
 
 
