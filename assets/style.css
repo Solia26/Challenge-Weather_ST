@@ -6,16 +6,7 @@
 body {
   margin: 0;
 }
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-} */
-/* Это глобальный сброс отступов */
+
 
 .headerWeather {
   text-align: center;
@@ -75,6 +66,7 @@ p {
   background-color: #272f3b;
   text-align: center;
   flex-basis: calc((100% - 4 * 24px) / 5);
+  color: #fff;
 }
 
 .divWeather {
@@ -98,5 +90,5 @@ p {
 .cityList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }

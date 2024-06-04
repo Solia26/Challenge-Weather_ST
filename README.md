@@ -100,3 +100,5 @@ You are required to submit BOTH of the following for review:
 
 - - -
 © 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+![alt text](<Screenshot 2024-06-03 at 10.33.09 PM.png>)
