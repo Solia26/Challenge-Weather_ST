@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Weather</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="headerWeather">
-        <a class="logo" href="./index.html">Weather Dashboard</a>
+      <a class="logo" href="./index.html">Weather Dashboard</a>
     </header>
     <!-- search form -->
     <div class="divWeather">
-    <section id="search-container" class="weatherForm">
+      <section id="search-container" class="weatherForm">
         <div class="container-form">
-          <form class="weatherForm">
-            <label for="searchBar" class="LabelWeather">Search for a City:</label> 
+          <form class="weatherForm" id="weatherForm">
+            <label for="searchBar" class="LabelWeather"
+              >Search for a City:</label
+            >
             <input
               id="searchBar"
               type="text"
               placeholder="Atlanta"
-              class="weatherInput"/> 
-                <button type="submit" id="submitBtn" class="btnWeather">Search</button>
+              class="weatherInput"
+              name="searchBar"
+            />
+            <button type="submit" id="submitBtn" class="btnWeather">
+              Search
+            </button>
           </form>
         </div>
         <div id="CitiesList" class="cityList"></div>
-    </section>
-<div class="section5days">
-    <section id="currentWeather" class="currentWeather"></section>
+        <button class="clear-history" id="clear-history">Clear history</button>
+      </section>
+      <div class="section5days">
+        <section id="currentWeather" class="currentWeather"></section>
 
-
-<!-- 5 days weather boxes -->
-    <section id="forecast-container">
-      <h2 class="weatherHeader">5-Day Forecast</h2>
-      <div class="weather5days" id="weather5days">
-
+        <!-- 5 days weather boxes -->
+        <section id="forecast-container">
+          <h2 class="weatherHeader">5-Day Forecast</h2>
+          <div class="weather5days" id="weather5days"></div>
+        </section>
       </div>
+    </div>
 
-
-
-
-    </section>
-  </div>
-</div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js" integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"
+      integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="./assets/script.js"></script>
-</body>
+  </body>
 </html>
